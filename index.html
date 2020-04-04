@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1000, initial-scale=1.0">
+    <title>Basic Journal</title>
+</head>
+
+<body>
+    <h1>Welcome to basic journal!</h1>
+    <button id="switchView">write</button>
+    <div id="write">
+        <textarea id="textarea"></textarea>
+        <button id="saveButton">Save</button>
+    </div>
+    <div id="read">
+
+    </div>
+
+    <script>
+        let switchViewButton = document.querySelector("#switchView");
+        let saveButton = document.querySelector("#saveButton");
+        let saveEntry = (entry) => {
+            let address = `http://localhost:3000/saveEntry?time=${new Date()}&text=${entry}`;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = () => {
+                var temp = {
+                    "readyState": this.readyState,
+                    "status": this.status
+                };
+                console.log(temp);
+                // console.log(this.readyState);
+                // console.log(this.status);
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                }
+            };
+            xhttp.open("POST", address, true);
+            // xhttp.setRequestHeader("Content-type", "text/html");
+            // xhttp.send(`time=${new Date()}&text=${entry}`);
+            xhttp.send();
+        }
+        saveButton.addEventListener("click", () => {
+            const entry = document.querySelector("#textarea").value;
+            saveEntry(entry);
+            document.querySelector("#textarea").value = "";
+        });
+        let formatEntries = (entries) => {
+            let formatedEntries = '';
+            entries = entries.split("}{");
+            for(let i = 0; i < entries.length; i++){
+                temp = entries[i].split(",");
+                formatedEntries += `<p>${temp[0]}</p>`;
+                formatedEntries += `<p>${temp[1]}</p>`;
+            }
+            document.querySelector("#read").innerHTML = formatedEntries;
+        }
+        switchViewButton.addEventListener("click", () => {
+            // switch text of button 
+            switchViewButton.innerText = (switchViewButton.innerText == "write" ? "read" : "write");
+            // get entries 
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    formatEntries(this.responseText);
+                }
+            };
+            xhttp.open("GET", `http://localhost:3000/getEntries`, true);
+            xhttp.send();
+            // switch div thats visible 
+        });
+    </script>
+</body>
+
+</html>
