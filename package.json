@@ -1,0 +1,24 @@
+{
+  "name": "basic-journal",
+  "version": "1.0.0",
+  "description": "change later",
+  "main": "index.js",
+  "scripts": {
+    "test": "change later",
+    "start":"node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanemarvinmay/basic-journal.git"
+  },
+  "keywords": [
+    "change",
+    "later"
+  ],
+  "author": "shanemarvinma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanemarvinmay/basic-journal/issues"
+  },
+  "homepage": "https://github.com/shanemarvinmay/basic-journal#readme"
+}
