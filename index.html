@@ -22,7 +22,7 @@
         let switchViewButton = document.querySelector("#switchView");
         let saveButton = document.querySelector("#saveButton");
         let saveEntry = (entry) => {
-            let address = `http://localhost:3000/saveEntry?time=${new Date()}&text=${entry}`;
+            let address = `http://10.0.0.92:3000/saveEntry?time=${new Date()}&text=${entry}`;
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = () => {
                 var temp = {
@@ -67,7 +67,7 @@
                     formatEntries(this.responseText);
                 }
             };
-            xhttp.open("GET", `http://localhost:3000/getEntries`, true);
+            xhttp.open("GET", `http://10.0.0.92:3000/getEntries`, true);
             xhttp.send();
             // switch div thats visible 
         });

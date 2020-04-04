@@ -43,4 +43,4 @@ const getEntries = (res) => {
     });
 }
 
-app.listen(port, () => console.log(`App running and listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`App running and listening at http://10.0.0.92:${port}`));
