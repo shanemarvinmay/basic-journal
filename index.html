@@ -50,7 +50,7 @@
             let formatedEntries = '';
             entries = entries.split("}{");
             for(let i = 0; i < entries.length; i++){
-                temp = entries[i].split(",");
+                temp = entries[i].split("\",\"");
                 formatedEntries += `<p>${temp[0]}</p>`;
                 formatedEntries += `<p>${temp[1]}</p>`;
             }
